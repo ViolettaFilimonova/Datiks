@@ -1,30 +1,39 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <authorization-form @authPerson="authUser" />
+    <router-view/>
+  </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import axios from 'axios'
+import AuthorizationForm from "@/components/Authorization-Form";
+export default {
+  components: {AuthorizationForm},
+  data(){
+    return{
+      dataBase: 'https://raw.githubusercontent.com/ViolettaFilimonova/data-json-wds/main/data.json',
+      users: [],
     }
+  },
+  methods:{
+    async fetchData(){
+      try {
+        const response = await axios.get(this.dataBase)
+        this.users = response.data;
+      }catch (e){
+        alert('Error')
+      }
+    },
+    authUser(person){
+      console.log(person)
+      console.log(this.users)
+    }
+  },
+  created() {
+    this.fetchData()
   }
 }
+</script>
+<style lang="scss">
+
 </style>
