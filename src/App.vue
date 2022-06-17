@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <authorization-form @authPerson="authUser" />
+<!--    <authorization-form @authPerson="authUser" />-->
     <router-view/>
   </div>
 </template>
 <script>
 import axios from 'axios'
-import AuthorizationForm from "@/components/Authorization-Form";
+//import AuthorizationForm from "@/components/Authorization-Form";
 export default {
-  components: {AuthorizationForm},
+//  components: {AuthorizationForm},
   data(){
     return{
       dataBase: 'https://raw.githubusercontent.com/ViolettaFilimonova/data-json-wds/main/data.json',

@@ -34,7 +34,14 @@ export default {
   },
   methods:{
     authUser(){
-      this.$emit('authPerson', this.person)
+      if (this.$store.state.isAuth === true){
+        this.$router.push('/about')
+        console.log('true')
+      }else {
+        alert('Вы ввели неправильный логин или пароль')
+      }
+      // this.$emit('authPerson', this.person)
+      // this.$router.push('/about')
     }
   }
 }
@@ -51,7 +58,7 @@ export default {
 .auth{
   font-family: "TT Norms", sans-serif;
   &__logo{
-     margin-top: 120px;
+     margin-top: 50px;
      width: 300px;
    }
   &__form{
