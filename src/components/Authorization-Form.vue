@@ -2,11 +2,11 @@
   <div class="wrapper">
     <div class="auth">
       <a href="https://datiks.ru"><img class="auth__logo" :src="image" alt="Datiks"></a>
-      <form @submit.prevent class="auth__form">
+      <form @submit="authUser" class="auth__form">
         <input v-model="person.login" class="auth__form_input" type="text" placeholder="Логин">
         <input v-model="person.pass" class="auth__form_input" type="password"  placeholder="Пароль">
         <div class="auth__btn">
-          <button @click="authUser" class="auth__btn_login">Войти</button>
+          <button  class="auth__btn_login">Войти</button>
         </div>
       </form>
     </div>
@@ -15,6 +15,7 @@
 
 <script>
 import image from '@/assets/datics.jpg'
+import axios from "axios";
 export default {
   name:'Authorization-Form',
   // props:{
@@ -29,6 +30,7 @@ export default {
       person:{
         login: '',
         pass: '',
+        axios: axios
       }
     }
   },
@@ -40,9 +42,17 @@ export default {
       }else {
         alert('Вы ввели неправильный логин или пароль')
       }
-      // this.$emit('authPerson', this.person)
-      // this.$router.push('/about')
-    }
+    },
+    // auth(e){
+    //   e.preventDefault()
+    //   this.axios
+    //       .get(`https://raw.githubusercontent.com/ViolettaFilimonova/data-json-wds/main/data.json`)
+    //       .then(response => {console.log(response.data.token)})
+    //       .catch( err => console.error(err))
+    // },
+    // setLogined(token){
+    //   console.log(token)N
+    // }
   }
 }
 </script>
